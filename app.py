@@ -40,4 +40,4 @@ def home():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER', filename]))
 
-    return render_template('index.html')
+    return render_template('index.html', form=form)
