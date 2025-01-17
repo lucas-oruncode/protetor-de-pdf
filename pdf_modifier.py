@@ -9,8 +9,8 @@ def modify_pdf(filename, cpf, position, color, upload_folder):
     can = canvas.Canvas(packet, pagesize=A4)
 
     if position == 'top-left':
-        x = 50
-        y = 800
+        x = 25
+        y = 770
     
     elif position == 'top-right':
         x = 500
@@ -29,7 +29,7 @@ def modify_pdf(filename, cpf, position, color, upload_folder):
     
 
     can.setFillColor(color)
-    can.setFont('Helvetica', 8)
+    can.setFont('Helvetica', 12)
     can.drawString(x, y, cpf)
 
     can.save()
@@ -41,7 +41,7 @@ def modify_pdf(filename, cpf, position, color, upload_folder):
         print("Novo PDF criado com sucesso.")
 
     except Exception as e:
-        print("Erro ao criar um novo PDF.", str(e))
+        print("Erro ao criar um novo PDF. " + str(e))
 
     try:
         existing_pdf = PdfReader(open(os.path.join(upload_folder, filename), 'rb'))
@@ -50,11 +50,11 @@ def modify_pdf(filename, cpf, position, color, upload_folder):
 
         for i in range(len(existing_pdf.pages)):
             page = existing_pdf.pages[i]
-            page.merge_page(new_pdf.pages[i])
+            page.merge_page(new_pdf.pages[0])
             output.add_page(page)
 
         with open(os.path.join(upload_folder, filename), 'wb') as outputStream:
             output.write(outputStream)    
         
     except Exception as e:
-        print("Erro ao abrir PDF existente.", str(e))
+        print("Erro ao abrir PDF existente. " + str(e))
