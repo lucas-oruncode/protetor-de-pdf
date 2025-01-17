@@ -19,6 +19,7 @@ class CPFInputForm(FlaskForm):
                                ('bottom-left', 'Inferior Esquerdo'),
                                ('bottom-right', 'Inferior Direito')
                            ])
+    submit = SubmitField('Submit')
     color = StringField('Cor: ', validators=[DataRequired()])
 
 
@@ -38,7 +39,7 @@ def home():
         
         if file:
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER', filename]))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
             cpf = form.cpf.data
             position = form.position.data
@@ -49,7 +50,7 @@ def home():
                 return send_file(os.path.join(app.config['UPLOAD_FOLDER'], filename), as_attachment=True)
             
             except Exception as e:
-                flash("Erro no envio do arquivo. ", str(e))
+                flash("Erro no envio do arquivo. " + str(e))
                 return redirect(request.url)
 
     return render_template('index.html', form=form)
