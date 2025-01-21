@@ -19,6 +19,12 @@ Bem-vindo ao **Protetor de PDF**, um microsaas que permite a proteção de PDFs 
 
 ## Como Executar o Projeto
 
+### Acesse direto na web: 
+ - https://protetor-de-pdf-gjqw.onrender.com
+
+
+### OU Localmente:
+
 1. **Clone este repositório**:
    ```bash
    git clone https://github.com/lucas-oruncode/protetor-de-pdf.git
